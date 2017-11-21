@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1A6AE14EB666DDAB75EF81B7 /* Pods_Flix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7714BC0A4CF2BF84B7A05508 /* Pods_Flix.framework */; };
 		B22675361FC29F3E0066CA7E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22675351FC29F3E0066CA7E /* DetailViewController.swift */; };
+		B22675381FC3EE770066CA7E /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22675371FC3EE770066CA7E /* PosterCell.swift */; };
+		B226753A1FC3EEAD0066CA7E /* SuperHeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22675391FC3EEAD0066CA7E /* SuperHeroViewController.swift */; };
 		B2DDDFE11FB6B9DA00811F15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DDDFE01FB6B9DA00811F15 /* AppDelegate.swift */; };
 		B2DDDFE61FB6B9DA00811F15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDFE41FB6B9DA00811F15 /* Main.storyboard */; };
 		B2DDDFE91FB6B9DA00811F15 /* Flix.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2DDDFE71FB6B9DA00811F15 /* Flix.xcdatamodeld */; };
@@ -22,6 +24,8 @@
 		18C334D511D68A61E798FD52 /* Pods-Flix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flix/Pods-Flix.debug.xcconfig"; sourceTree = "<group>"; };
 		7714BC0A4CF2BF84B7A05508 /* Pods_Flix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22675351FC29F3E0066CA7E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B22675371FC3EE770066CA7E /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
+		B22675391FC3EEAD0066CA7E /* SuperHeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroViewController.swift; sourceTree = "<group>"; };
 		B2DDDFDD1FB6B9DA00811F15 /* Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2DDDFE01FB6B9DA00811F15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2DDDFE51FB6B9DA00811F15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				B2EECEB71FB778060019FB3D /* NowPlayingViewController.swift */,
 				B2EECEDE1FB8B6080019FB3D /* MovieCell.swift */,
 				B22675351FC29F3E0066CA7E /* DetailViewController.swift */,
+				B22675371FC3EE770066CA7E /* PosterCell.swift */,
+				B22675391FC3EEAD0066CA7E /* SuperHeroViewController.swift */,
 			);
 			path = Flix;
 			sourceTree = "<group>";
@@ -222,8 +228,10 @@
 			files = (
 				B2DDDFE91FB6B9DA00811F15 /* Flix.xcdatamodeld in Sources */,
 				B2EECEB81FB778060019FB3D /* NowPlayingViewController.swift in Sources */,
+				B22675381FC3EE770066CA7E /* PosterCell.swift in Sources */,
 				B22675361FC29F3E0066CA7E /* DetailViewController.swift in Sources */,
 				B2EECEDF1FB8B6080019FB3D /* MovieCell.swift in Sources */,
+				B226753A1FC3EEAD0066CA7E /* SuperHeroViewController.swift in Sources */,
 				B2DDDFE11FB6B9DA00811F15 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

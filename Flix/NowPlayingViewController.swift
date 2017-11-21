@@ -77,6 +77,12 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
         cell.photoImageView.af_setImage(withURL: imageUrl)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
