@@ -14,7 +14,20 @@ class MovieCell: UITableViewCell {
     
     @IBOutlet weak var MovieTitle: UILabel!
     @IBOutlet weak var MovieOverview: UILabel!
-    
+    var movie: Movie! {
+        didSet {
+            let title = movie.title
+            let overview = movie.overview
+            let imagePath = movie.posterUrl
+            
+            let baseURLString = "https://image.tmdb.org/t/p/w500"
+            
+            let imageUrl = URL(string: baseURLString + imagePath)!
+            MovieTitle.text = title
+            MovieOverview.text = overview
+            photoImageView.af_setImage(withURL: imageUrl)
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
     }

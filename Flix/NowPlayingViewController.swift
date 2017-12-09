@@ -12,7 +12,7 @@ import AlamofireImage
 class NowPlayingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let searchController = UISearchController(searchResultsController: nil)
     @IBOutlet weak var tableView: UITableView!
-    var movies: [[String:Any]] = []
+    var movies: [Movie] = []
     var refreshControl: UIRefreshControl!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -28,33 +28,53 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
-        fetchNowPlayingMovies()
-    }
-    
-    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
-        fetchNowPlayingMovies()
-        
-    }
-    
-    func fetchNowPlayingMovies() {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a748038ef76f624a37909103286c5440")!
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { (data, response, error) in
-            //This will run when network request returns
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
-                let movies = dataDictionary["results"] as! [[String:Any]]
+        //fetchNowPlayingMovies()
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
                 self.movies = movies
-                self.tableView.reloadData()
                 self.spinner.stopAnimating()
+                self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
         }
-        task.resume()
     }
+    
+    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+       // fetchNowPlayingMovies()
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.spinner.stopAnimating()
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+//    func fetchNowPlayingMovies() {
+//        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a748038ef76f624a37909103286c5440")!
+//        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let task = session.dataTask(with: request) { (data, response, error) in
+//            //This will run when network request returns
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else if let data = data {
+//                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+//                let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
+//
+//                self.movies = Movie.movies(dictionaries: movieDictionaries)
+//                /*for dictionary in movieDictionaries {
+//                    let movie = Movie(dictionary: dictionary)
+//                    self.movies.append(movie)
+//                }*/
+//                self.tableView.reloadData()
+//                self.spinner.stopAnimating()
+//                self.refreshControl.endRefreshing()
+//            }
+//        }
+//        task.resume()
+//    }
 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -66,17 +86,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        let imagePath = movie["poster_path"] as! String
-
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        
-        let imageUrl = URL(string: baseURLString + imagePath)!
-        cell.MovieTitle.text = title
-        cell.MovieOverview.text = overview
-        cell.photoImageView.af_setImage(withURL: imageUrl)
+        cell.movie = movies[indexPath.row]
         return cell
     }
     
